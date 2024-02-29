@@ -1,7 +1,14 @@
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Total from "./components/Total";
 const App = () => {
-  <div>
-    <p>Hello world</p>
-  </div>;
+  return (
+    <div>
+      <Header />
+      <Content />
+      <Total />
+    </div>
+  );
 };
 
 export default App;
