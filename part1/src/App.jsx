@@ -1,30 +1,43 @@
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Total from "./components/Total";
+import { useState } from "react";
+
+const Hello = ({ name, age }) => {
+  const bornYear = () => new Date().getFullYear() - age;
+  return (
+    <div>
+      <p>
+        Hello {name}, you are {age} years old
+      </p>
+      <p>so you are probably born in {bornYear()}</p>
+    </div>
+  );
+};
+
+const Display = ({ counter }) => <div>{counter}</div>;
+
+const Button = (props) => {
+  return <button onClick={props.onClick}>{props.text}</button>;
+};
+
 const App = () => {
-  const course = {
-    name: "Half Stack application development",
-    parts: [
-      {
-        name: "Fundamentals of React",
-        exercises: 10,
-      },
-      {
-        name: "Using props to pass data",
-        exercises: 7,
-      },
-      {
-        name: "State of a component",
-        exercises: 14,
-      },
-    ],
-  };
+  const [counter, setCounter] = useState(0);
+  const increaseByOne = () => setCounter(counter + 1);
+  const decreaseByOne = () => setCounter(counter - 1);
+  const setToZero = () => setCounter(0);
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <div>
+        <Display counter={counter} />
+        <Button onClick={increaseByOne} text="plus" />
+        <Button onClick={setToZero} text="zero" />
+        <Button onClick={decreaseByOne} text="minus" />
+      </div>
+      <Header />
+      <Content />
+      <Total />
     </div>
   );
 };
